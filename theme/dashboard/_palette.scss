@@ -31,6 +31,8 @@ $app-accent: (
     A200 : #bcfffb,
     A400 : #89fff9,
     A700 : #6ffff7,
+  'contrastDefaultColor': 'light',
+
 );
 
 $app-teal: (
@@ -48,6 +50,8 @@ $app-teal: (
     A200 : #96ffef,
     A400 : #63ffe7,
     A700 : #4affe3,
+  'contrastDefaultColor': 'light',
+
 );
 $app-cyan: (
   50: #e9f9f9,
@@ -63,7 +67,9 @@ $app-cyan: (
   A100: #effffe,
   A200: #bcfffb,
   A400: #89fff9,
-  A700: #6ffff7
+  A700: #6ffff7,
+  'contrastDefaultColor': 'light',
+
 );
 $app-green: (
   50: #e3f9eb,
@@ -79,7 +85,9 @@ $app-green: (
   A100: #dfffe4,
   A200: #acffba,
   A400: #79ff90,
-  A700: #5fff7b
+  A700: #5fff7b,
+  'contrastDefaultColor': 'light',
+
 );
 
 $app-blue: (
@@ -97,6 +105,8 @@ $app-blue: (
   A200: #4740ff,
   A400: #160dff,
   A700: #0900f2,
+  'contrastDefaultColor': 'light',
+
 );
 
 $app-red: (
@@ -167,7 +177,9 @@ $app-amber: (
   A100: #ffe57f,
   A200: #ffd740,
   A400: #ffc400,
-  A700: #ffab00
+  A700: #ffab00,
+  'contrastDefaultColor': 'light',
+
 );
 
 $app-orange: (
@@ -184,7 +196,9 @@ $app-orange: (
   A100: #ffffff,
   A200: #fffdfc,
   A400: #ffd1c9,
-  A700: #ffbcb0
+  A700: #ffbcb0,
+  'contrastDefaultColor': 'light',
+
 );
 
 $app-grey: (
@@ -198,6 +212,7 @@ $app-grey: (
   700: #616161,
   800: #424242,
   900: #212121,
+  'contrastDefaultColor': 'light',
 );
 
 // $tb-theme-primary: map-get($app-blue, 500);

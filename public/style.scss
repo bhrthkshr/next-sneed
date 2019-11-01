@@ -10,11 +10,11 @@ $tb-theme-secondary: map-get($app-accent, 500);
 $tb-theme-primary-light:map-get($app-primary, 200);
 
 $dark-primary: mat-palette($app-primary, 500);
-// $dark-secondary: mat-palette($app-cyan, 500);
+$dark-secondary: mat-palette($app-cyan, 500);
 $dark-accent : mat-palette($app-accent, 500);
 $dark-warn : mat-palette($app-red);
 $dark-forground : mat-palette($app-grey);
-// $dark-theme : mat-light-theme($dark-primary, $dark-accent, $dark-warn);
+$dark-theme : mat-light-theme($dark-primary, $dark-accent, $dark-warn);
 $dark-theme : mat-light-theme($dark-primary, $dark-accent, $dark-warn);
 
 
@@ -86,6 +86,8 @@ p {
 
 @import "../theme/tb/class";
 @import "../theme/dashboard/class";
+
+@debug "scssss loadin";
 
 @media screen and (max-width: 1910px) {
   :root {

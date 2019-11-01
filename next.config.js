@@ -1,31 +1,14 @@
-// const withCss = require('@zeit/next-css')
-// const withSaas = require('@zeit/next-sass')
+const withSass = require('@zeit/next-sass');
+const withCSS = require('@zeit/next-css');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-// module.exports = withCss(withSaas({
-//   webpack: (config, { isServer }) => {
-//     if (isServer) {
-//       const antStyles = /antd\/.*?\/style\/css.*?/
-//       const origExternals = [...config.externals]
-//       config.externals = [
-//         (context, request, callback) => {
-//           if (request.match(antStyles)) return callback()
-//           if (typeof origExternals[0] === 'function') {
-//             origExternals[0](context, request, callback)
-//           } else {
-//             callback()
-//           }
-//         },
-//         ...(typeof origExternals[0] === 'function' ? [] : origExternals),
-//       ]
-
-//       config.module.rules.unshift({
-//         test: antStyles,
-//         use: 'null-loader',
-//       })
-//     }
-//     return config
-//   },
-// }))
-
-const withSass = require('@zeit/next-sass')
-module.exports = withSass()
+module.exports = withCSS(withSass({
+  webpack(config, {dev}) {
+    if (config.mode === 'production') {
+      if (Array.isArray(config.optimization.minimizer)) {
+        config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
+      }
+    }
+    return config;
+  }
+}));
