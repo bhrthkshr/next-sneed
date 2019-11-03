@@ -21,7 +21,7 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from "@material-ui/icons";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
@@ -30,7 +30,12 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import Link from "next/link";
 // import "../public/style.scss";
 import Box from "@material-ui/core/Box";
-import SliderIReact from "../swiperGallery/swiper";
+import DemoCarousel from "../swiperGallery/swiper";
+import BreadCrumb from "../../shared/widgets/breadcrums/breadcrumbs";
+import InfoIcon from '@material-ui/icons/Info';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Icon from "@material-ui/core";
+
 
 const drawerWidth = 100;
 
@@ -82,7 +87,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflowX: "hidden",
       width: theme.spacing(7) + 30,
       [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(12) + 19
+        width: theme.spacing(10) + 24
       }
     },
     toolbar: {
@@ -132,9 +137,9 @@ export default function Home() {
         <Divider />
         <List>
           {[
-            { name: "overview", url: "/", icon: <InboxIcon /> },
+            { name: "overview", url: "/", icon: <InfoIcon /> },
             { name: "pricing", url: "/pricing", icon: <InboxIcon /> },
-            { name: "Location", url: "/location", icon: <InboxIcon /> },
+            { name: "Location", url: "/location", icon: <LocationOnIcon /> },
             { name: "Amenities", url: "/amenities", icon: <InboxIcon /> },
             { name: "Timing", url: "/timing", icon: <InboxIcon /> },
             { name: "Reviews", url: "/reviews", icon: <InboxIcon /> }
@@ -142,12 +147,13 @@ export default function Home() {
             <ListItem button key={object.name}>
               <ListItemIcon>
                 <Link href={object.url}>
-                  <div className="">
-                    <div className="tb-padding--left-24">{object.icon}</div>
-                    <div className="tb-text-align--center">
+                  <Box>
+                    <div className="tb-text-align--center">{object.icon}</div>
+                    <div className="tb-width--full tb-text-align--center">
+                      <p className="tb-opacity--0 tb-height--1">dummy text text </p>
                       <p className="tb-typo--body1">{object.name}</p>
                     </div>
-                  </div>
+                  </Box>
                 </Link>
               </ListItemIcon>
             </ListItem>
@@ -155,10 +161,17 @@ export default function Home() {
         </List>
       </Drawer>
       <main className={clsx(classes.content)}>
+        <div className="tb-padding--2"></div>
+         <BreadCrumb/>
         <div className="">
-          <Box display="flex"  p={1} flexDirection="row" justifyContent="flex-end">
+          <Box
+            display="flex"
+            p={1}
+            flexDirection="row"
+            justifyContent="flex-end"
+          >
             <div className="slider-container border-outline">
-              <SliderIReact />
+              <DemoCarousel />
             </div>
           </Box>
         </div>

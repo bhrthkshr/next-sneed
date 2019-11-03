@@ -19,6 +19,7 @@
     "react-dom": "16.10.2",
     "react-google-charts": "^3.0.15",
     "react-id-swiper": "^2.3.2",
+    "react-responsive-carousel": "^3.1.51",
     "rxjs": "^6.5.3",
     "swiper": "^5.2.0"
   },

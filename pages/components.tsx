@@ -69,15 +69,15 @@ export default function DrawerContainer(props) {
         })}
       >
         <Toolbar>
-          <p className="tb-typo--h3">Sneed</p>
+          <p className="tb-typo--h3">SNEED</p>
           <div className="tb-width--full">
             <Box display="flex" flexDirection="row" justifyContent="flex-end">
-              <p className="tb-typo--body1">LIST SPACE</p>
+              <p className="tb-typo--h6 tb-color--grey-900">LIST SPACE</p>
               <div className="tb-padding--8"></div>
-              <p className="tb-typo--body1">CONTACT</p>
+              <p className="tb-typo--h6 tb-color--grey-900">CONTACT</p>
               <div className="tb-padding--8"></div>
 
-              <p className="tb-typo--body1">LOGIN</p>
+              <p className="tb-typo--h6 tb-color--grey-900">LOGIN</p>
             </Box>
           </div>
         </Toolbar>
