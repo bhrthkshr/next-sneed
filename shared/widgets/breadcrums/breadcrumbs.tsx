@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       padding: theme.spacing(1, 2)
+    },
+    redButton: {
+      backgroundColor: "#F54848",
     }
   })
 );
@@ -35,8 +38,8 @@ export default function BreadCrumb() {
   return (
     <div className={classes.root}>
       <Paper elevation={0} className={classes.paper}>
-        <Box display="flex" flexDirection="row">
-          <Box flexGrow={1}>
+        <Box display="flex" flexWrap="wrap">
+          <Box display="flex" alignItems="center" flexGrow={1}>
             <Breadcrumbs
               separator={<NavigateNextIcon fontSize="small" />}
               aria-label="breadcrumb"
@@ -54,7 +57,7 @@ export default function BreadCrumb() {
               <p className="tb-typo--body2 tb-color--grey-700">Bangalore</p>
             </Breadcrumbs>
           </Box>
-          <Box display="flex" flexDirection="row">
+          <Box display="flex" flexWrap="wrap">
             <Box p={1} display="flex" flexDirection="row">
               <ApartmentIcon />
               <div className="tb-padding--2"></div>
@@ -72,7 +75,7 @@ export default function BreadCrumb() {
             </Box>
             <div className="tb-padding--8"></div>
 
-            <Button
+            <Button className={classes.redButton}
               variant="contained"
               color="secondary"
               startIcon={<AccountTreeIcon />}

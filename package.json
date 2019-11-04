@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev -p 8000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export",
+    "deploy" : "npm run build && npm run export"
   },
   "dependencies": {
     "@material-ui/core": "^4.5.1",
@@ -20,6 +22,7 @@
     "react-google-charts": "^3.0.15",
     "react-id-swiper": "^2.3.2",
     "react-responsive-carousel": "^3.1.51",
+    "react-stars": "^2.2.5",
     "rxjs": "^6.5.3",
     "swiper": "^5.2.0"
   },

@@ -1,40 +1,21 @@
-import React, { Component } from "react";
-import "./home.scss";
-import Footer from "../../shared/footer/footer";
-import Button from "@material-ui/core/Button";
-import PieChart from "../../shared/charts/pie-chart";
-import MyButton from "../../custom/button/button";
-
-import { flexbox } from "@material-ui/system";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import clsx from "clsx";
-import {
-  createStyles,
-  makeStyles,
-  useTheme,
-  Theme
-} from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import { createStyles, makeStyles, Theme, useTheme } from "@material-ui/core/styles";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import clsx from "clsx";
 import Link from "next/link";
-// import "../public/style.scss";
-import Box from "@material-ui/core/Box";
-import DemoCarousel from "../swiperGallery/swiper";
+import React from "react";
 import BreadCrumb from "../../shared/widgets/breadcrums/breadcrumbs";
-import InfoIcon from '@material-ui/icons/Info';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import Icon from "@material-ui/core";
+import SpaceDetail from "../space-detail/space-detail";
+import DemoCarousel from "../swiperGallery/swiper";
+import "./home.scss";
 
 
 const drawerWidth = 100;
@@ -68,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "none"
     },
     drawer: {
-      width: drawerWidth,
+      minWidth: drawerWidth,
       flexShrink: 0,
       whiteSpace: "nowrap"
     },
@@ -85,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen
       }),
       overflowX: "hidden",
-      width: theme.spacing(7) + 30,
+      width: theme.spacing(10) + 24,
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(10) + 24
       }
@@ -137,21 +118,36 @@ export default function Home() {
         <Divider />
         <List>
           {[
-            { name: "overview", url: "/", icon: <InfoIcon /> },
-            { name: "pricing", url: "/pricing", icon: <InboxIcon /> },
-            { name: "Location", url: "/location", icon: <LocationOnIcon /> },
-            { name: "Amenities", url: "/amenities", icon: <InboxIcon /> },
-            { name: "Timing", url: "/timing", icon: <InboxIcon /> },
-            { name: "Reviews", url: "/reviews", icon: <InboxIcon /> }
+            { name: "overview", url: "/", icon: "/svg/overview.svg" },
+            { name: "pricing", url: "/pricing", icon: "/svg/money.svg" },
+            { name: "Location", url: "/location", icon: "/svg/loc.svg" },
+            { name: "Amenities", url: "/amenities", icon: "/svg/wifi.svg" },
+            { name: "Timing", url: "/timing", icon: "/svg/time.svg" },
+            { name: "Reviews", url: "/reviews", icon: "/svg/thumbsUp.svg" }
           ].map(object => (
             <ListItem button key={object.name}>
               <ListItemIcon>
                 <Link href={object.url}>
-                  <Box>
-                    <div className="tb-text-align--center">{object.icon}</div>
-                    <div className="tb-width--full tb-text-align--center">
-                      <p className="tb-opacity--0 tb-height--1">dummy text text </p>
-                      <p className="tb-typo--body1">{object.name}</p>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    flexDirection="column"
+                  >
+                    <div className="tb-width--full tb-flex--justify-center">
+                      <Box className="tb-icon--24">
+                        <Icon>
+                          <img
+                            className="tb-image tb-text-align--center"
+                            src={object.icon}
+                          />
+                        </Icon>
+                      </Box>
+                    </div>
+                    <div className="tb-width--full">
+                      <p className="tb-opacity--0 tb-height--1">
+                        dummy text text
+                      </p>
+                      <p className="tb-typo--body1 tb-text-align--center">{object.name}</p>
                     </div>
                   </Box>
                 </Link>
@@ -162,8 +158,13 @@ export default function Home() {
       </Drawer>
       <main className={clsx(classes.content)}>
         <div className="tb-padding--2"></div>
-         <BreadCrumb/>
-        <div className="">
+        <BreadCrumb />
+        <Box display="flex" flexWrap="wrap">
+          <Box display="flex" flexGrow={1}>
+            <div>
+              <SpaceDetail />
+            </div>
+          </Box>
           <Box
             display="flex"
             p={1}
@@ -174,7 +175,7 @@ export default function Home() {
               <DemoCarousel />
             </div>
           </Box>
-        </div>
+        </Box>
       </main>
     </div>
   );

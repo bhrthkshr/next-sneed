@@ -21,6 +21,9 @@ class DemoCarousel extends Component {
                 <div>
                     <img src="/images/slide5.jpg" />
                 </div>
+                <div>
+                    <img src="/images/slide6.png" />
+                </div>
             </Carousel>
         );
     }
