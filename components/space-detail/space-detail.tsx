@@ -4,11 +4,16 @@ import Chip from "@material-ui/core/Chip";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from "@material-ui/core/styles";
 import React from "react";
 import ReactStars from "react-stars";
-import "./space-detail.scss";
-
+import { Grid, Icon } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,7 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     blueButton: {
       backgroundColor: "#33A0FF",
-      width:"100%"
+      width: "100%",
+      "&:hover": {
+        background: "#33A0FF"
+      }
     }
   })
 );
@@ -30,6 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function SpaceDetail() {
   const classes = useStyles("");
   const [location, setLocation] = React.useState("");
+  const theme = useTheme();
+  const ltSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const xs = useMediaQuery(theme.breakpoints.only("xs"));
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setLocation(event.target.value as string);
@@ -37,8 +48,8 @@ export default function SpaceDetail() {
   //   classes={selectStyles}
 
   return (
-    <div className="tb-padding--h-36">
-      <Box>
+    <div>
+      <Grid container direction="column" alignItems="stretch">
         <div className="tb-width--76">
           <img src="/images/awfis.png" className="tb-image" />
         </div>
@@ -58,13 +69,23 @@ export default function SpaceDetail() {
               </Select>
             </FormControl>
           </div>
-          <div>
+          <Box display="flex" flexDirection="row">
             <p className="tb-typo--body2 tb-color--red-400">Verified</p>
-          </div>
+            <div className="tb-padding--6"></div>
+            <div className="tb-icon--16">
+              <Icon>
+                <img
+                  className="tb-image tb-text-align--center"
+                  src="/svg/verified.svg"
+                />
+              </Icon>
+            </div>
+          </Box>
         </div>
         <div className="tb-padding--2"></div>
-        <Box display="flex" flexWrap="wrap">
-          <Box display="flex" flexDirection="row">
+
+        <Grid container alignItems="center">
+          <Box display="flex" flexWrap="wrap" alignItems="center">
             <ReactStars
               count={5}
               size={24}
@@ -72,42 +93,52 @@ export default function SpaceDetail() {
               value={4}
               edit={false}
             />
-            <div className="tb-padding--8"></div>
-            <p className="tb-typo--body1 tb-color--amber-600 tb-flex--align-items">
-              4.0
+            <div className="tb-padding--4"></div>
+            <p className="tb-typo--body1 tb-color--amber-600">4.0</p>
+          </Box>
+          <div className="tb-padding--8"></div>
+          <Box display="flex" flexWrap="wrap">
+            <p className="tb-typo--body2 tb-color--grey-900">80 ratings</p>
+          </Box>
+          <div className="tb-padding--8"></div>
+          <Box display="flex" flexWrap="wrap">
+            <p className="tb-typo--body2 tb-color--grey-900">
+              &#8226; &nbsp; 24 reviews
             </p>
           </Box>
-          <div className="tb-padding--12"></div>
-          <p className="tb-typo--body2 tb-color--grey-900 tb-flex--align-items">
-            80 ratings
-          </p>
-          <div className="tb-padding--12"></div>
-          <p className="tb-typo--body2 tb-color--grey-900 tb-flex--align-items">
-            &#8226; &nbsp; 24 reviews
-          </p>
-        </Box>
+        </Grid>
+
         <div className="tb-padding--8"></div>
-        <Box display="flex" flexWrap="wrap">
+        <Grid container direction="row" alignItems="center">
           <div className="tb-color-bg--red-400">
-            <p className="tb-color--white tb-typo--body2 tb-padding--4-8">Premier</p>
+            <p className="tb-color--white tb-typo--body2 tb-padding--4-8">
+              Premier
+            </p>
           </div>
-        <div className="tb-padding--8"></div>
+          <div className="tb-padding--8"></div>
           <div className="tb-color-bg--grey-500">
-          <p className="tb-color--white tb-typo--body2 tb-padding--4-8">Coworking</p>
+            <p className="tb-color--white tb-typo--body2 tb-padding--4-8">
+              Coworking
+            </p>
           </div>
-        </Box>
-        <div className="tb-padding--8"></div>
-        <Box className="chipsConatiner" display="flex"  flexDirection="column">
-          <Box  display="flex"  flexWrap="wrap">
+        </Grid>
+
+        <div className="tb-padding--12"></div>
+        <Box display="flex" flexWrap="wrap">
           {featureItems}
-          </Box>
-          <div className="tb-padding--v-8">
-          <Button className={classes.blueButton}  variant="contained"
-              color="primary">Check Avaliability</Button>
-        </div>
         </Box>
-        
-      </Box>
+        <Grid>
+          <div className="tb-padding--v-12">
+            <Button
+              className={classes.blueButton}
+              variant="contained"
+              color="primary"
+            >
+              Check Avaliability
+            </Button>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
 }
@@ -121,7 +152,8 @@ let _mFeatures = [
 ];
 
 const featureItems = _mFeatures.map((item, index) => (
-  <Chip key={index}
+  <Chip
+    key={index}
     className="tb-margin--4 tb-border--r4"
     label={item}
     variant="outlined"

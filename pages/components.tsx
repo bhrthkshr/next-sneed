@@ -7,7 +7,6 @@ import clsx from "clsx";
 import React from "react";
 import Home from "../components/home/home";
 
-const drawerWidth = 100;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,38 +15,30 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
-      backgroundColor: "#fff",
-      color: "#000",
+      background:"#fff",
+      color:"#000",
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
-      })
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
       })
     },
     toolbar: {
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
-      padding: theme.spacing(0, 1),
+      // padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar
     },
     content: {
       flexGrow: 1,
-      marginTop: 65,
-      marginLeft:120,
+      // marginTop: 65,
+      // marginLeft:110,
     }
   })
 );
 
 export default function DrawerContainer(props) {
-  const classes = useStyles("");
+  const classes = useStyles({});
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -64,10 +55,7 @@ export default function DrawerContainer(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
+        className={clsx(classes.appBar)}>
         <Toolbar>
           <p className="tb-typo--h3">SNEED</p>
           <div className="tb-width--full">
@@ -83,6 +71,7 @@ export default function DrawerContainer(props) {
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
+      <div className={classes.toolbar} />
         <Home/>
       </main>
     </div>

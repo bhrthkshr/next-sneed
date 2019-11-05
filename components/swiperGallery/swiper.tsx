@@ -1,32 +1,34 @@
-import React, { Component } from 'react';
+import { useTheme, Theme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import React from "react";
+import { Grid } from "@material-ui/core";
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import { createStyles, makeStyles } from "@material-ui/styles";
 
-class DemoCarousel extends Component {
-    render() {
-        return (
-            <Carousel autoPlay infiniteLoop>
-                <div>
-                    <img src="/images/slide1.jpg" />
-                </div>
-                <div>
-                    <img src="/images/slide2.jpg" />
-                </div>
-                <div>
-                    <img src="/images/slide3.jpg" />
-                </div>
-                <div>
-                    <img src="/images/slide4.jpg" />
-                </div>
-                <div>
-                    <img src="/images/slide5.jpg" />
-                </div>
-                <div>
-                    <img src="/images/slide6.png" />
-                </div>
-            </Carousel>
-        );
-    }
+
+export default function DemoCarousel() {
+  const theme = useTheme();
+  const ltSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const xs = useMediaQuery(theme.breakpoints.only("xs"));
+  return (
+      <Carousel dynamicHeight={true} autoPlay infiniteLoop>
+        {_mFeatureItems}
+      </Carousel>
+  );
 }
 
-export default DemoCarousel;
+let carouselItems = [
+  "/images/slide1.jpg",
+  "/images/slide2.jpg",
+  "/images/slide3.jpg",
+  "/images/slide4.jpg",
+  "/images/slide5.jpg",
+  "/images/slide6.png"
+];
+
+const _mFeatureItems = carouselItems.map((item, index) => (
+  <div key={index}>
+    <img className="tb-image" src={item} />
+  </div>
+));

@@ -1,120 +1,66 @@
-import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import { createStyles, makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  useTheme
+} from "@material-ui/core/styles";
 import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 import BreadCrumb from "../../shared/widgets/breadcrums/breadcrumbs";
 import SpaceDetail from "../space-detail/space-detail";
 import DemoCarousel from "../swiperGallery/swiper";
-import "./home.scss";
+import { Grid } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import styles from "./jss/homeStyle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+// import {homeStyle, theme1} from "./jss/homeStyle";
 
-const drawerWidth = 100;
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     root: {
+//       display: "flex"
+//     },
+//     hide: {
+//       display: "none"
+//     },
+//     drawer: {
+//       flexShrink: 0,
+//       whiteSpace: "nowrap"
+//     },
+//     toolbar: {
+//       display: "flex",
+//       alignItems: "center",
+//       justifyContent: "flex-end",
+//       ...theme.mixins.toolbar
+//     },
+//     content: {
+//       flexGrow: 1
+//     }
+//   })
+// );
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex"
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      backgroundColor: "#fff",
-      color: "#000",
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      })
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
-      })
-    },
-    menuButton: {
-      marginRight: 36
-    },
-    hide: {
-      display: "none"
-    },
-    drawer: {
-      minWidth: drawerWidth,
-      flexShrink: 0,
-      whiteSpace: "nowrap"
-    },
-    drawerOpen: {
-      width: drawerWidth,
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
-      })
-    },
-    drawerClose: {
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      }),
-      overflowX: "hidden",
-      width: theme.spacing(10) + 24,
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(10) + 24
-      }
-    },
-    toolbar: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar
-    },
-    content: {
-      flexGrow: 1
-      // paddingLeft: theme.spacing(15),
-    }
-  })
-);
+// const useStyles = makeStyles((theme1)=>createStyles(homeStyle));
+const useStyles = makeStyles((theme: Theme) => styles(theme));
 
 export default function Home() {
-  const classes = useStyles("");
-  const theme = useTheme();
+  const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const ltSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const xs = useMediaQuery(theme.breakpoints.only("xs"));
 
   return (
-    <div>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open
-          })
-        }}
-        open={open}
-      >
-        <div className={classes.toolbar}>
-          <IconButton>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
+    <div className={classes.root}>
+      <Drawer variant="permanent" className={clsx(classes.drawer)}>
+        <div className={classes.toolbar}></div>
         <Divider />
         <List>
           {[
@@ -128,54 +74,65 @@ export default function Home() {
             <ListItem button key={object.name}>
               <ListItemIcon>
                 <Link href={object.url}>
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    flexDirection="column"
-                  >
-                    <div className="tb-width--full tb-flex--justify-center">
-                      <Box className="tb-icon--24">
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item>
+                      <div className="tb-icon--24">
                         <Icon>
                           <img
                             className="tb-image tb-text-align--center"
                             src={object.icon}
                           />
                         </Icon>
-                      </Box>
-                    </div>
-                    <div className="tb-width--full">
-                      <p className="tb-opacity--0 tb-height--1">
-                        dummy text text
+                      </div>
+                    </Grid>
+                    <Grid item>
+                      <p className="tb-typo--body1 tb-text-align--center">
+                        {object.name}
                       </p>
-                      <p className="tb-typo--body1 tb-text-align--center">{object.name}</p>
-                    </div>
-                  </Box>
+                    </Grid>
+                  </Grid>
                 </Link>
               </ListItemIcon>
             </ListItem>
           ))}
         </List>
       </Drawer>
+
       <main className={clsx(classes.content)}>
-        <div className="tb-padding--2"></div>
-        <BreadCrumb />
-        <Box display="flex" flexWrap="wrap">
-          <Box display="flex" flexGrow={1}>
-            <div>
-              <SpaceDetail />
-            </div>
-          </Box>
-          <Box
-            display="flex"
-            p={1}
-            flexDirection="row"
-            justifyContent="flex-end"
-          >
-            <div className="slider-container border-outline">
-              <DemoCarousel />
-            </div>
-          </Box>
-        </Box>
+        <Grid container direction="column">
+          <BreadCrumb />
+
+          <div className="tb-container--stretched">
+            <Grid container direction={ltSm ? "column" : "row"}>
+
+              <Grid item xs>
+                <Grid container direction="column" alignItems="stretch">
+                  <SpaceDetail />
+                </Grid>
+              </Grid>
+
+              <Grid item lg={2} md={1}/>
+
+
+               <Grid item xs>
+               <Grid container direction="column" alignItems="stretch">
+                  <Grid item xs>
+                    <Grid container justify={ltSm ? "flex-start" : "flex-end"}>
+                      <p className="tb-typo--body2 tb-color--grey-900 tb-padding--12">
+                        4 more branches from Awfis
+                      </p>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                    <div className={classes.slider}>
+                  <DemoCarousel />
+                    </div>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </div>
+        </Grid>
       </main>
     </div>
   );

@@ -1,5 +1,10 @@
 import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  Theme,
+  useTheme,
+  createStyles
+} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
@@ -11,6 +16,9 @@ import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import ApartmentIcon from "@material-ui/icons/Apartment";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import CallIcon from "@material-ui/icons/Call";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { Grid } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,15 +26,15 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       flexWrap: "wrap"
     },
-    paper: {
-      padding: theme.spacing(1, 2)
-    },
     redButton: {
       backgroundColor: "#F54848",
+      "&:hover": {
+        background: "#F54848"
+      }
     }
   })
 );
-
+// {matches ? 'row' : 'column'}
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert("You clicked a breadcrumb.");
@@ -34,57 +42,85 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 
 export default function BreadCrumb() {
   const classes = useStyles("");
+  const theme = useTheme();
+  const ltSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const xs = useMediaQuery(theme.breakpoints.only("xs"));
 
   return (
     <div className={classes.root}>
-      <Paper elevation={0} className={classes.paper}>
-        <Box display="flex" flexWrap="wrap">
-          <Box display="flex" alignItems="center" flexGrow={1}>
-            <Breadcrumbs
-              separator={<NavigateNextIcon fontSize="small" />}
-              aria-label="breadcrumb"
-            >
-              <Link color="inherit" href="/" onClick={handleClick}>
-                <p className="tb-typo--body2 tb-color--grey-700">Home</p>
-              </Link>
-              <Link
-                color="inherit"
-                href="/getting-started/installation/"
-                onClick={handleClick}
-              >
-                <p className="tb-typo--body2 tb-color--grey-700">India</p>
-              </Link>
-              <p className="tb-typo--body2 tb-color--grey-700">Bangalore</p>
-            </Breadcrumbs>
-          </Box>
-          <Box display="flex" flexWrap="wrap">
-            <Box p={1} display="flex" flexDirection="row">
-              <ApartmentIcon />
-              <div className="tb-padding--2"></div>
-              <p className="tb-typo--body2">Book Visit</p>
-            </Box>
-            <Box p={1} display="flex" flexDirection="row">
-              <ChatBubbleOutlineIcon />
-              <div className="tb-padding--2"></div>
-              <p className="tb-typo--body2">Chat</p>
-            </Box>
-            <Box p={1} display="flex" flexDirection="row">
-              <CallIcon />
-              <div className="tb-padding--2"></div>
-              <p className="tb-typo--body2">Call me</p>
-            </Box>
-            <div className="tb-padding--8"></div>
+      <div className="tb-card--thin tb-padding--12 tb-color-bg--white tb-width--full">
+        <Grid container direction={ltSm ? 'column' : 'row'}>
+          <Grid item xs>
+            <Grid container direction="row" alignItems="center">
+              <Grid item>
+                <ArrowBackIcon />
+              </Grid>
+                <div className="tb-padding--6"></div>
+              <Grid item>
+                <Breadcrumbs
+                  separator={<NavigateNextIcon fontSize="small" />}
+                  aria-label="breadcrumb"
+                >
+                  <Link color="inherit" href="/" onClick={handleClick}>
+                    <p className="tb-typo--body2 tb-color--grey-700">Home</p>
+                  </Link>
+                  <Link
+                    color="inherit"
+                    href="/getting-started/installation/"
+                    onClick={handleClick}
+                  >
+                    <p className="tb-typo--body2 tb-color--grey-700">India</p>
+                  </Link>
+                  <p className="tb-typo--body2 tb-color--grey-700">Bangalore</p>
+                </Breadcrumbs>
+              </Grid>
+            </Grid>
+          </Grid>
+          <div className="tb-padding--6"></div>
+          <Grid item xs>
+            <Grid container direction={xs ? 'column' : 'row'} alignItems={ltSm ? 'stretch' : 'center'}>
+              <Grid item xs>
+                <Grid container direction="row">
+                  <Grid item xs>
+                    <Grid container direction="row">
+                      <ApartmentIcon />
+                      <div className="tb-padding--4"></div>
+                      <p className="tb-typo--body2">Book Visit</p>
+                    </Grid>
+                  </Grid>
 
-            <Button className={classes.redButton}
-              variant="contained"
-              color="secondary"
-              startIcon={<AccountTreeIcon />}
-            >
-              Add Venue to shortlist
-            </Button>
-          </Box>
-        </Box>
-      </Paper>
+                  <Grid item xs>
+                    <Grid container direction="row">
+                      <ChatBubbleOutlineIcon />
+                      <div className="tb-padding--4"></div>
+                      <p className="tb-typo--body2">Chat</p>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item xs>
+                    <Grid container direction="row">
+                      <CallIcon />
+                      <div className="tb-padding--4"></div>
+                      <p className="tb-typo--body2">Call me</p>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item>
+                <Button
+                  className={classes.redButton}
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<AccountTreeIcon />}
+                >
+                  Add Venue to shortlist
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
     </div>
   );
 }
