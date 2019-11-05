@@ -51,6 +51,7 @@ export default function Home() {
   const ltSm = useMediaQuery(theme.breakpoints.down("sm"));
   const xs = useMediaQuery(theme.breakpoints.only("xs"));
 
+
   return (
     <div className={classes.root}>
       <Drawer variant="permanent" className={clsx(classes.drawer)}>
@@ -58,6 +59,7 @@ export default function Home() {
         <Divider />
         <List>
           {[
+            { name: "", url: "", icon: "" },
             { name: "overview", url: "/", icon: "/svg/overview.svg" },
             { name: "pricing", url: "/pricing", icon: "/svg/money.svg" },
             { name: "Location", url: "/location", icon: "/svg/loc.svg" },
@@ -65,7 +67,7 @@ export default function Home() {
             { name: "Timing", url: "/timing", icon: "/svg/time.svg" },
             { name: "Reviews", url: "/reviews", icon: "/svg/thumbsUp.svg" }
           ].map(object => (
-            <ListItem button key={object.name}>
+            <ListItem button key={object.name} className={!object.name ? 'tb-opacity--0' : ''}> 
               <ListItemIcon>
                 <Link href={object.url}>
                   <Grid container direction="column" alignItems="center">
@@ -83,6 +85,7 @@ export default function Home() {
                       <p className="tb-typo--body1 tb-text-align--center">
                         {object.name}
                       </p>
+                      <div className="tb-padding--8"></div>
                     </Grid>
                   </Grid>
                 </Link>

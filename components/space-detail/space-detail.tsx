@@ -49,7 +49,7 @@ export default function SpaceDetail() {
           <img src="/images/awfis.png" className="tb-image" />
         </div>
         <div>
-          <h3 className="tb-typo--h3">Awfis St Marks Road</h3>
+          <h3 className="tb-typo--h1 tb-font-weight--normal">Awfis St Marks Road</h3>
           <div>
             <FormControl className={classes.formControl}>
               <Select

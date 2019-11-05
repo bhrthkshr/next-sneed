@@ -55,12 +55,8 @@ const homeStyle = (theme: Theme)=>createStyles({
       width:"70vw"
 
     },
-    [theme.breakpoints.only('md')]: {
-      width:"auto"
-
-    },
-    [theme.breakpoints.only('lg')]: {
-      width:"auto"
+    [theme.breakpoints.up('md')]: {
+      maxWidth:"45vw"
     },
   }
 });
