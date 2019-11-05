@@ -40,6 +40,10 @@ const homeStyle = (theme: Theme)=>createStyles({
     flexShrink: 0,
     whiteSpace: "nowrap" as any
   },
+  drawerInner:{
+    width: 100,
+
+  },
   toolbar: {
     display: "flex",
     alignItems: "center",
@@ -50,7 +54,10 @@ const homeStyle = (theme: Theme)=>createStyles({
     flexGrow: 1
   },
   slider: {
-  
+    [theme.breakpoints.down('xs')]: {
+      width:"90%"
+
+    },
     [theme.breakpoints.down('sm')]: {
       width:"70vw"
 
