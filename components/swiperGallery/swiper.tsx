@@ -1,10 +1,8 @@
-import { useTheme, Theme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import React from "react";
-import { Grid } from "@material-ui/core";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { createStyles, makeStyles } from "@material-ui/styles";
 
 
 export default function DemoCarousel() {

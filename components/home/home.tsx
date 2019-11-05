@@ -1,25 +1,19 @@
+import { Grid } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Icon from "@material-ui/core/Icon";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  useTheme
-} from "@material-ui/core/styles";
+import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 import BreadCrumb from "../../shared/widgets/breadcrums/breadcrumbs";
 import SpaceDetail from "../space-detail/space-detail";
 import DemoCarousel from "../swiperGallery/swiper";
-import { Grid } from "@material-ui/core";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import styles from "./jss/homeStyle";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // import {homeStyle, theme1} from "./jss/homeStyle";
 

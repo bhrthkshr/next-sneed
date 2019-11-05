@@ -1,24 +1,16 @@
-import React from "react";
-import {
-  makeStyles,
-  Theme,
-  useTheme,
-  createStyles
-} from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import { Grid } from "@material-ui/core";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import { createStyles, makeStyles, Theme, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import ApartmentIcon from "@material-ui/icons/Apartment";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-import CallIcon from "@material-ui/icons/Call";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { Grid } from "@material-ui/core";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CallIcon from "@material-ui/icons/Call";
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
